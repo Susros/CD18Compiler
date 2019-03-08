@@ -1,0 +1,19 @@
+
+CD18 a
+
+func add (x : integer, y : integer) : integer
+    result : integer
+    begin
+    	result = x + y;
+    	return result;
+    end
+
+main
+    result : integer
+begin
+	result = add(5, 2.90);
+	result = add(5, 2, 3);
+    printline result;
+end 
+
+CD18 a

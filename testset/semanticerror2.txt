@@ -1,0 +1,15 @@
+
+
+CD18 part2b
+
+main
+	i : integer
+
+begin
+	i = 3;
+
+    printline str; /-- Fail point. Trying to use variable that has not been declared yet.
+
+end
+
+CD18 Part2b /-- Fail point. Identifiers at the beginning and end of the program do not match

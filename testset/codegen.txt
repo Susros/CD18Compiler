@@ -1,0 +1,56 @@
+CD18 Week9
+
+main
+	i : integer,
+	j : integer,
+	
+	/-- Addition
+	a : integer,
+
+	/-- Multiplication
+	m : integer,
+
+	/-- Division
+	d : integer,
+
+	/-- Subtraction
+	s : integer,
+
+	/-- Constant Addition
+	ca : integer,
+
+	/-- Constant Multiplication
+	cm : integer,
+
+	/-- Constant Division
+	cd : integer,
+
+	/-- Constant Subtraction
+	cs : integer
+
+begin
+	input i;
+	input j;
+
+	a = i + j;
+	m = i * j;
+	d = i / j;
+	s = i - j;
+
+	ca = 10 + 5;
+	cm = 2 * 4;
+	cd = 50 / 2;
+	cs = 100 - 8;
+
+	printline a;
+	printline m;
+	printline d;
+	printline s;
+
+	printline ca;
+	printline cm;
+	printline cd;
+	printline cs;
+
+
+end CD18 Week9

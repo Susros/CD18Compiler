@@ -1,0 +1,134 @@
+CD18 Language Syntax - LL(1) - (Left Factored)
+===================================================
+
+<program>		::= CD18 <id> <consts> <types> <arrays> <funcs> <mainbody>
+
+<consts>		::= constants <initlist> | ε
+
+<initlist>		::= <init> <initlisttail>
+<initlisttail> 	::= ε | , <initlist>
+
+<init>			::= <id> = <expr>
+
+<types>			::= types <typelist> | ε
+
+<arrays>		::= arrays <arrdecls> | ε
+
+<funcs>			::= <func> <funcs> | ε
+
+<mainbody>		::= main <slist> begin <stats> end CD18 <id>
+
+<slist>			::= <sdecl> <slisttail>
+<slisttail>		::= ε | , <slist>
+
+<typelist>		::= <type> <typelisttail>
+<typelisttail>  ::= ε | <typelist>
+
+<type>			::= <structid> is <fields> end
+
+<type>			::= <typeid> is array [ <expr> ] of <structid>
+
+<fields>		::= <sdecl> <fieldstail>
+<fieldstail>    ::= ε | , <fields>
+
+<sdecl>			::= <id> : <stype>
+
+<arrdecls>		::= <arrdecl> <arrdeclstail>
+<arrdeclstail>  ::= ε | , <arrdecls>
+
+<arrdecl>		::= <id> : <typeid>
+
+<func>			::= func <id> ( <plist> ) : <rtype> <funcbody>
+
+<rtype>			::= <stype> | void
+
+<plist>			::= <params> | ε
+
+<params>		::= <param> <paramstail>
+<paramstail>	::= ε | , <params>
+
+<param>			::= <sdecl> | <arrdecl> | const <arrdecl>
+
+<funcbody>		::= <locals> begin <stats> end
+
+<locals>		::= <dlist> | ε
+
+<dlist>			::= <decl> <dlisttail>
+<dlisttail>		::= ε | , <dlist>
+
+<decl>			::= <sdecl> | <arrdecl>
+
+<stype>			::= integer | real | boolean
+
+<stats>			::= <stat> ; <statstail> | <strstat> <statstail>
+<statstail>		::= ε | <stats>
+
+<strstat>		::= <forstat> | <ifstat>
+
+<stat>			::= <reptstat> | <asgnstat> | <iostat> | <callstat> | <returnstat>
+
+<forstat>		::= for ( <asgnlist> ; <bool> ) <stats> end
+
+<repstat>		::= repeat ( <asgnlist> ) <stats> until <bool>
+
+<asgnlist>		::=	<alist> | ε
+
+<alist>			::= <asgnstat> <alisttail>
+<alisttail>		::= ε | , <alist>
+
+<ifstat>		::= if ( <bool> ) <stats> end
+
+<ifstat>		::= if ( <bool> ) <stats> else <stats> end
+
+<asgnstat>		::= <var> <asgnop> <bool>
+
+<asgnop>		::=	= | += | -= | *= | /=
+
+<iostat>		::= input <vlist> | print <prlist> | printline <prlist>
+
+<callstat>		::= <id> ( <callstattail>
+<callstattail>  ::= <elist> ) | )
+
+<returnstat>	::= return <returnstattail>
+<returnstattail>::= ε | <expr>
+
+<vlist>			::= <var> <vlisttail>
+<vlisttail>		::= ε | , <vlist>
+
+<var>			::= <id> <vartail>
+<vartail>		::= ε | [<expr>] . <id>
+
+<elist>			::=	<bool> <elisttail>
+<elisttail>		::= ε | , <elist>
+
+<bool>			::= <rel> <booltail>
+<booltail>		::= <logop> <rel> <booltail> | ε
+
+<rel>			::= not <expr> <reltail> | <expr> <reltail>
+<reltail>		::= ε | <relop><expr>
+
+<logop>			::= and | or | xor
+
+<relop>			::=	== | != | > | <= | < | >=
+
+<expr>			::= <fact> <exprtail>
+<exprtail>		::= + <fact> <exprtail> | - <fact> <exprtail> | ε
+
+<fact> 			::= <term> <facttail>
+<facttail>		::= * <term> <facttail> | / <term> <facttail> | % <term> <facttail> | ε
+
+<term> 			::= <exponent><termtail>
+<termtail>		::= ^ <exponent> <termtail> | ε
+
+<exponent> 		::= <var> | <intlit> | <reallit> | <fncall> | true | false
+
+<exponent> 		::= ( <bool> )
+
+<fncall> 		::= <id> ( <fncalltail>
+<fncalltail>	::= <elist> ) | )
+
+<prlist>		::= <printitem> <prlisttail>
+<prlisttail>	::= ε | , <prlist>
+
+<printitem> 	::= <expr> | <string>
+
